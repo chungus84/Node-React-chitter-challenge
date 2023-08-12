@@ -12,5 +12,7 @@ describe('User Tests', () => {
         const testUser = new User(fName, lName, email, userName, password);
 
         expect(testUser).instanceOf(User);
-    })
+        expect(testUser).to.have.nested.property('fName');
+    });
+
 })
