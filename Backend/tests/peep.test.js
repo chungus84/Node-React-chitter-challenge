@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import Peep from "../src/models/peep.js";
+import Peep from "../src/models/peep.model.js";
 
 describe('Peep tests', () => {
     it('should return an instance of peep', () => {

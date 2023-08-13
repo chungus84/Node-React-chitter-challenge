@@ -11,7 +11,7 @@ const PORT = process.env.PORT;
 console.log(HOST);
 console.log(PORT);
 
-main().catch(error => console.log(error));
+main();
 
 const server = app.listen(PORT, HOST, () => {
     const SERVERHOST = server.address().address;

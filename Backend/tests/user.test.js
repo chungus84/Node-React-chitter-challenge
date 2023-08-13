@@ -1,5 +1,5 @@
 import chai, { expect } from 'chai';
-import User from '../src/models/user.js';
+import User from '../src/models/user.model.js';
 
 describe('User Tests', () => {
     it('should create a new user', () => {

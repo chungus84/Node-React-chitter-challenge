@@ -1,0 +1,18 @@
+{
+    "id": 1,
+    "fName": "Test",
+    "lName": "User",
+    "email": "test@test.com",
+    "userName": "TestyTest",
+    "password": "swordfish",
+    "peeps": []
+}
+ {
+    "id": 2,
+    "fName": "Joe",
+    "lName": "Bloggs",
+    "email": "joebloggs@company.com",
+    "userName": "joeyBlowy",
+    "password": "password",
+    "peeps": []
+}
