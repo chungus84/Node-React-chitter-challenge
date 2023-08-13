@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "64d8f2372e3cfdfa88da2d1e",
+        "message": "His this is a Peep"
+    },
+    {
+        "_id": "64d8f2372e3cfdfa88da2d1f",
+        "message": "Hi this is another Peep"
+    },
+    {
+        "_id": "64d917cb7d6a8320d0205372",
+        "message": "This is the newest Peep",
+        "__v": 0
+    },
+    {
+        "_id": "64d919fc34b3eeccde6616ef",
+        "message": "This peeps is after I merge the routes",
+        "__v": 0
+    }
+]
