@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Peep from "./peep.model";
+import Peep from "./peep.model.js";
 
 const userSchema = new mongoose.Schema({
     fName: { type: String, required: true },
@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     userName: { type: String, required: true },
     password: { type: String, required: true },
-    peeps: [Peep],
+    peeps: [],
 });
 
 const User = mongoose.model(`User`, userSchema);
