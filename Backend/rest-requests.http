@@ -1,1 +1,10 @@
 GET http://127.0.0.1:3000
+
+###
+
+POST http://127.0.0.1:3000/new
+content-type: application/json
+
+{
+    "message": "This is the newest Peep"
+}
