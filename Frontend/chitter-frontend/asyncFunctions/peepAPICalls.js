@@ -1,0 +1,36 @@
+import axios from 'axios';
+
+
+export const getPeeps = async peep => {
+    try {
+        const res = await axios.get(import.meta.env.VITE_CHITTERURL);
+        if (Array.isArray(res.data) && res.data?.length > 0) return { peeps: res.data, status: res.status }
+        throw new Error(`There are no peeps to get, please start peeping`);
+    } catch (error) {
+        return {
+            peeps: [],
+            status: error.response?.status ?? 204,
+            error: {
+                type: `get`,
+                message: `Data not currently available from the server: ${error.message ?? error.response.message}`
+            }
+        }
+    }
+}
+
+export const submitPeep = async peep => {
+
+
+    try {
+        const res = await axios.post(import.meta.env.VITE_CHITTERURL, peep);
+        return { peeps: res.data, status: res.status };
+    } catch (error) {
+        return {
+            status: error.response?.status ?? 204,
+            error: {
+                type: `post`,
+                message: error.response?.message
+            }
+        }
+    }
+}

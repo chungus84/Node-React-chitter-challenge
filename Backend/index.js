@@ -2,10 +2,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import main from './src/db/main.js';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import { router as getUsers } from './routes/getUsers.js';
 import { router as peepsRouter } from './routes/peeps.js';
-import { router as newPeep } from './routes/newPeep.js'
+
 
 const app = express();
 dotenv.config({ path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}` });
@@ -14,11 +15,12 @@ const HOST = process.env.HOST;
 const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use('/', peepsRouter);
 // app.use('/', newPeep);
 
-console.log(HOST);
-console.log(PORT);
+// console.log(HOST);
+// console.log(PORT);
 
 main();
 
