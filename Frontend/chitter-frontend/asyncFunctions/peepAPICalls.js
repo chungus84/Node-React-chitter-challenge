@@ -18,19 +18,21 @@ export const getPeeps = async peep => {
     }
 }
 
-export const submitPeep = async peep => {
+export const addPeep = async peep => {
 
 
     try {
         const res = await axios.post(import.meta.env.VITE_CHITTERURL, peep);
-        return { peeps: res.data, status: res.status };
+        // return { peeps: res.data, status: res.status };
+        return res.data;
     } catch (error) {
-        return {
-            status: error.response?.status ?? 204,
-            error: {
-                type: `post`,
-                message: error.response?.message
-            }
-        }
+        return error;
+        // return {
+        //     status: error.response?.status ?? 204,
+        //     error: {
+        //         type: `post`,
+        //         message: error.response?.message
+        //     }
+        // }
     }
 }

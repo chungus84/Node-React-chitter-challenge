@@ -13,9 +13,10 @@ dotenv.config({ path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` :
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
-
-app.use(bodyParser.json());
+// app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', peepsRouter);
 // app.use('/', newPeep);
 
