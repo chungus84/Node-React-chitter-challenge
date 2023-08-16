@@ -30,3 +30,5 @@ const server = app.listen(PORT, HOST, () => {
     const SERVERPORT = server.address().port;
     console.log(`Server is listening at http://${SERVERHOST}:${SERVERPORT}`);
 })
+
+export default server;
