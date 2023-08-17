@@ -5,7 +5,8 @@ import PeepModel from './utils/Peep.model.js';
 
 const PeepFeed = ({ data }) => {
 
-    // console.log(data.peeps);
+    const peepData = data.peeps
+    peepData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
     const [dataStatus, setDataStatus] = useState({ name: `loading`, message: `Peeps are loading...` });
 
@@ -19,11 +20,10 @@ const PeepFeed = ({ data }) => {
     }, [data]);
 
     const feedThePeeps = () => {
-        const { peeps } = data;
-        // console.log((peeps));
-        if (peeps?.length > 0) {
-            const displayPeeps = peeps.map(peep => {
-                const peeper = new PeepModel(peep._id, peep.message);
+
+        if (peepData?.length > 0) {
+            const displayPeeps = peepData.map(peep => {
+                const peeper = new PeepModel(peep._id, peep.message, peep.createdAt);
                 return <Peep peep={peeper} key={peeper._id} />
             })
             return displayPeeps;

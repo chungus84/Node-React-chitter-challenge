@@ -7,7 +7,9 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     userName: { type: String, required: true },
     password: { type: String, required: true },
-    peeps: [],
+    peeps: [{
+        type: mongoose.Schema.Types.ObjectId
+    }],
 });
 
 const User = mongoose.model(`User`, userSchema);

@@ -36,6 +36,7 @@ function App() {
             console.error(data.message);
         } else {
             console.log(`Peep added`);
+            // setPeeps([...peeps, data]);
             getPeepsHandler();
         }
     }
@@ -70,6 +71,7 @@ function App() {
                 <div className="container-fluid d-flex flex-column justify-content-center">
                     <Routes>
                         <Route path="/" element={<><NewPeepForm addPeep={addPeepData} /><PeepFeed data={{ peeps, error: error.message }} /></>} />
+
                     </Routes>
 
                     {/* <PeepFeed peeps={testPeeps} /> */}
