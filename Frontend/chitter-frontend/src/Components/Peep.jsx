@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import PeepModel from './utils/Peep.model.js';
 
-const Peep = ({ peep: { message, createdAt } }) => {
-    console.log(createdAt);
+const Peep = ({ peep: { message, createdAt, userName } }) => {
+    // console.log(createdAt);
     return (
         <div className="card my-3 peep-card" data-testid="peeping">
             <div className="card-body">
+                <p>peeped by {userName}</p>
                 <p>peeped at: {new Date(createdAt).toLocaleString('en-GB')}</p>
                 <p>{message}</p>
             </div>

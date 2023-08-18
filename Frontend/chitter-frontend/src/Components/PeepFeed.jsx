@@ -5,8 +5,15 @@ import PeepModel from './utils/Peep.model.js';
 
 const PeepFeed = ({ data }) => {
 
+
     const peepData = data.peeps
-    peepData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+    // for (const user of peepData) {
+    //     user.peeps.forEach(peep => console.log(peep.message));
+    // }
+    // console.log(peepData);
+
+    // peepData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
     const [dataStatus, setDataStatus] = useState({ name: `loading`, message: `Peeps are loading...` });
 
@@ -22,11 +29,21 @@ const PeepFeed = ({ data }) => {
     const feedThePeeps = () => {
 
         if (peepData?.length > 0) {
-            const displayPeeps = peepData.map(peep => {
-                const peeper = new PeepModel(peep._id, peep.message, peep.createdAt);
-                return <Peep peep={peeper} key={peeper._id} />
-            })
-            return displayPeeps;
+            let displayPeeps = [];
+            for (const user of peepData) {
+
+                displayPeeps.push(user.peeps.map(peep => {
+                    const newPeep = new PeepModel(peep._id, peep.message, peep.createdAt, user.userName)
+                    return <Peep peep={newPeep} key={newPeep._id} />
+                }))
+
+            }
+            const flattenArray = displayPeeps.flat();
+            // console.log(flattenArray[0].props.peep);
+            flattenArray.sort((a, b) => new Date(b.props.peep.createdAt) - new Date(a.props.peep.createdAt))
+            // console.log(flattenArray);
+            return flattenArray
+
         }
     }
 

@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
     userName: { type: String, required: true },
     password: { type: String, required: true },
     peeps: [{
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Peep"
     }],
 });
 

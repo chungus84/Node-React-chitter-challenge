@@ -5,6 +5,7 @@ export const getPeeps = async peep => {
     try {
         const res = await axios.get(import.meta.env.VITE_CHITTERURL);
         if (Array.isArray(res.data) && res.data?.length > 0) return { peeps: res.data, status: res.status }
+        // console.log(res.data[1]);
         throw new Error(`There are no peeps to get, please start peeping`);
     } catch (error) {
         return {

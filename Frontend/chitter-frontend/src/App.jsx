@@ -19,7 +19,7 @@ function App() {
 
     const getPeepsHandler = async () => {
         const apiCallResult = await getPeeps();
-        console.log(apiCallResult);
+        // console.log(apiCallResult);
         if (apiCallResult?.error) {
             const errorObject = { ...apiCallResult.error };
             errorObject.message = `There was a problem with getting Peeps: ${apiCallResult.error.message}`;

@@ -1,9 +1,13 @@
+import mongoose from "mongoose";
 import Peep from "../src/models/peep.model.js";
+import User from "../src/models/user.model.js";
 
 
 export const getPeepsService = async () => {
     try {
-        return await Peep.find({});
+        return await User.find({}, { userName: 1, peeps: 1 }).populate('peeps')
+
+
     } catch (error) {
         throw error;
     }
@@ -12,7 +16,7 @@ export const getPeepsService = async () => {
 export const newPeepService = async newPeep => {
 
     try {
-        // Connect to the database collection and save the new document
+        // Connect to the database collection and save the new documen
         // console.log(newPeep);
         const peepToAdd = new Peep(newPeep);
         // saving the document
