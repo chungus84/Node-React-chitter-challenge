@@ -8,6 +8,8 @@ import PeepFeed from './Components/PeepFeed'
 
 
 import { addPeep, getPeeps } from '../asyncFunctions/peepAPICalls.js'
+import SignUpPage from './SignUpPage';
+import PeepPage from './PeepPage';
 
 function App() {
     // const [count, setCount] = useState(0)
@@ -68,15 +70,16 @@ function App() {
         <>
             <div className='container'>
                 <Header />
-                <div className="container-fluid d-flex flex-column justify-content-center">
-                    <Routes>
-                        <Route path="/" element={<><NewPeepForm addPeep={addPeepData} /><PeepFeed data={{ peeps, error: error.message }} /></>} />
 
-                    </Routes>
+                <Routes>
+                    <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} />} />
+                    <Route path="/sign-up" element={<SignUpPage />} />
 
-                    {/* <PeepFeed peeps={testPeeps} /> */}
+                </Routes>
 
-                </div>
+                {/* <PeepFeed peeps={testPeeps} /> */}
+
+
             </div>
 
 

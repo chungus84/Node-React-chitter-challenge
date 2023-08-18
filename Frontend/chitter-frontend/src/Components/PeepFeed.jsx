@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import Peep from "./Peep"
 import PeepModel from './utils/Peep.model.js';
 
-const PeepFeed = ({ data }) => {
+const PeepFeed = ({ peeps }) => {
 
 
-    const peepData = data.peeps
+    const peepData = peeps.peeps
+
+    // console.log(peeps.peeps);
 
     // for (const user of peepData) {
     //     user.peeps.forEach(peep => console.log(peep.message));
@@ -18,13 +20,13 @@ const PeepFeed = ({ data }) => {
     const [dataStatus, setDataStatus] = useState({ name: `loading`, message: `Peeps are loading...` });
 
     useEffect(() => {
-        const { error } = data;
+        const { error } = peeps;
         if (error?.length) {
             return setDataStatus({ name: `error`, message: error });
         }
         setDataStatus({ name: `loading`, message: `Peeps are loading...` })
 
-    }, [data]);
+    }, [peeps]);
 
     const feedThePeeps = () => {
 
@@ -63,8 +65,13 @@ PeepFeed.defaultProps = {
 }
 
 PeepFeed.propTypes = {
-    peeps: PropTypes.arrayOf(
-        PropTypes.object
+    peeps: PropTypes.shape({
+        error: PropTypes.string,
+        peep: PropTypes.array
+    }
+
+
+
     ),
 }
 
