@@ -8,13 +8,22 @@ import PeepFeed from './Components/PeepFeed'
 
 
 import { addPeep, getPeeps, addUser } from '../asyncFunctions/peepAPICalls.js'
+import { checkLogin } from './Components/utils/authenticationHelpers.js';
+
 import SignUpPage from './SignUpPage';
 import PeepPage from './PeepPage';
+import LoginPage from './LoginPage';
 
 function App() {
 
     const [peeps, setPeeps] = useState([]);
     const [error, setError] = useState({ type: ``, message: `` });
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [user, setUser] = useState({
+        userId: ``,
+        userName: ``,
+
+    })
 
 
     const getPeepsHandler = async () => {
@@ -51,6 +60,10 @@ function App() {
         }
     }
 
+    const handleLogin = async ({ email, password }) => {
+        setLoggedIn(await checkLogin({ email, password }))
+    }
+
     useEffect(() => {
         getPeepsHandler()
     }, [])
@@ -82,6 +95,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} />} />
                     <Route path="/sign-up" element={<SignUpPage addUserFunc={addUserHandler} />} />
+                    <Route path='/login' element={<LoginPage handleLogin={handleLogin} />} />
 
                 </Routes>
 
