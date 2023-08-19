@@ -4,7 +4,7 @@ import main from './src/db/main.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { router as getUsers } from './routes/getUsers.js';
+import { router as userRouter } from './routes/users.js';
 import { router as peepsRouter } from './routes/peeps.js';
 
 
@@ -18,6 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', peepsRouter);
+app.use(`/sign-up`, userRouter);
 // app.use('/', newPeep);
 
 // console.log(HOST);

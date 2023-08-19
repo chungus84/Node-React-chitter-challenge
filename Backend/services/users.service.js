@@ -8,3 +8,13 @@ export const getUsersService = async () => {
     }
 
 }
+
+export const addUserService = async newUser => {
+    console.log(newUser);
+    try {
+        const userToAdd = new User(newUser);
+        return await userToAdd.save()
+    } catch (error) {
+        throw error;
+    }
+}

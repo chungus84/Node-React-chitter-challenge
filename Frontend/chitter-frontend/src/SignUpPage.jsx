@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import Header from "./Components/Header"
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const SignUpPage = ({ addUserFunc }) => {
+
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         fName: ``,
@@ -19,16 +22,23 @@ const SignUpPage = ({ addUserFunc }) => {
     }
 
     const handleSubmit = e => {
-        e.preventDefault();
+        e.preventDefault()
         const newUser = { ...user };
         console.dir(newUser);
-        addUserFunc(newUser);
+        try {
+            addUserFunc(newUser);
+            navigate('/');
+        } catch (error) {
+            navigate('/sign-up')
+        }
+
+
     }
 
     return (
         <>
             <div className="container" style={{ width: "50%" }} >
-                <form method='post' onSubmit={e => handleSubmit(e)} >
+                <form action='/' method='post' onSubmit={e => handleSubmit(e)} >
                     <div className="row justify-content-center text-start my-3">
                         <div className="form-group col-md-5">
                             <label htmlFor="fNameText"> First Name:</label>

@@ -41,7 +41,7 @@ export const addPeep = async peep => {
 
 export const addUser = async user => {
     try {
-        const res = await axios.post(import.meta.env.VITE_CHITTERURL, user)
+        const res = await axios.post(`${import.meta.env.VITE_CHITTERURL}/sign-up`, user)
         return res.data
     } catch (error) {
         return error

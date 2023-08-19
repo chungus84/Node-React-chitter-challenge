@@ -44,7 +44,7 @@ function App() {
     const addUserHandler = async user => {
         console.log(`Adding new User`);
         const apiCallResult = await addUser(user);
-        if (data instanceof Error) {
+        if (user instanceof Error) {
             console.log(data.message);
         } else {
             console.log(`New User Added`);
