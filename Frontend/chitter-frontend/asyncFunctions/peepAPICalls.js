@@ -37,3 +37,15 @@ export const addPeep = async peep => {
         // }
     }
 }
+
+
+export const addUser = async user => {
+    try {
+        const res = await axios.post(import.meta.env.VITE_CHITTERURL, user)
+        return res.data
+    } catch (error) {
+        return error
+    }
+
+
+}

@@ -7,17 +7,15 @@ import NewPeepForm from './Components/NewPeepForm'
 import PeepFeed from './Components/PeepFeed'
 
 
-import { addPeep, getPeeps } from '../asyncFunctions/peepAPICalls.js'
+import { addPeep, getPeeps, addUser } from '../asyncFunctions/peepAPICalls.js'
 import SignUpPage from './SignUpPage';
 import PeepPage from './PeepPage';
 
 function App() {
-    // const [count, setCount] = useState(0)
-    // console.log(testPeeps);
-    // console.log(import.meta.env.VITE_CHITTERURL);
+
     const [peeps, setPeeps] = useState([]);
     const [error, setError] = useState({ type: ``, message: `` });
-    // const [createUpdateStatus, setCreateUpdateStatus] = useState(``);
+
 
     const getPeepsHandler = async () => {
         const apiCallResult = await getPeeps();
@@ -40,6 +38,16 @@ function App() {
             console.log(`Peep added`);
             // setPeeps([...peeps, data]);
             getPeepsHandler();
+        }
+    }
+
+    const addUserHandler = async user => {
+        console.log(`Adding new User`);
+        const apiCallResult = await addUser(user);
+        if (data instanceof Error) {
+            console.log(data.message);
+        } else {
+            console.log(`New User Added`);
         }
     }
 
@@ -73,7 +81,7 @@ function App() {
 
                 <Routes>
                     <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} />} />
-                    <Route path="/sign-up" element={<SignUpPage />} />
+                    <Route path="/sign-up" element={<SignUpPage addUserFunc={addUserHandler} />} />
 
                 </Routes>
 
