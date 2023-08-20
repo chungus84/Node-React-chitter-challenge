@@ -1,16 +1,23 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import Peep from '../src/Components/Peep';
+import { MemoryRouter } from 'react-router-dom';
 
-import testData from './peepsTest.json';
+import PeepModel from '../src/Components/utils/Peep.model.js';
 
-describe('Peep card tests', () => {
-    it('should render a peep with "His this is a Peep" as its message ', () => {
+describe('Peep test suite', () => {
 
-        render(<Peep peepData={testData[0]} />);
-        const cardMessage = screen.getByText(testData[0].message);
+    describe('Testing render when peep is sent', () => {
+        const testUser = { userName: "TestUser" }
 
+        const testPeep = new PeepModel("64d8f2372e3cfdfa88da2d1e", "This is a test peep", "2023-08-20T19:30:13.396Z", testUser.userName)
 
-        expect(cardMessage).toBeInTheDocument();
-    });
+        test('render the test peep', () => {
+
+            render(<MemoryRouter><Peep peep={testPeep} /></MemoryRouter>)
+
+            expect(screen.getByText('This is a test peep')).toBeInTheDocument()
+            expect(screen.getByText(`peeped by ${testUser.userName}`)).toBeInTheDocument()
+        })
+    })
 
 })
