@@ -5,6 +5,8 @@ import './App.css'
 import Header from './Components/Header.jsx'
 import NewPeepForm from './Components/NewPeepForm'
 import PeepFeed from './Components/PeepFeed'
+import LoginButton from './Components/LoginButton';
+import SignUpButton from './Components/SignUpButton';
 
 
 import { addPeep, getPeeps, addUser } from '../asyncFunctions/peepAPICalls.js'
@@ -73,8 +75,11 @@ function App() {
 
         userArray.push(response.user)
 
+    }
 
-
+    const handleLogout = () => {
+        setLoggedIn(false);
+        setUser({ userName: '' })
     }
 
     useEffect(() => {
@@ -105,11 +110,16 @@ function App() {
     return (
         <>
             <div className='container'>
-                <Header />
-                <h3> WHi There {user.userName}</h3>
+                <Header login={loggedIn} user={user} />
+                <div className="d-flex flex-row justify-content-center">
+
+
+                </div>
+                <h3> Hi There {user.userName}</h3>
+
 
                 <Routes>
-                    <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} user={user} />} />
+                    <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} user={user} login={loggedIn} logoutFunc={handleLogout} />} />
                     <Route path="/sign-up" element={<SignUpPage addUserFunc={addUserHandler} />} />
                     <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
 
