@@ -24,7 +24,7 @@ const PeepPage = ({ peepFunc, data, user, login, logoutFunc }) => {
                 {login && <LogoutButton logoutFunc={logoutFunc} />}
             </div>
 
-            <NewPeepForm addPeep={peepFunc} user={{ userName }} />
+            <NewPeepForm addPeep={peepFunc} user={{ userName }} login={login} />
             <PeepFeed peeps={{ peeps, error }} />
 
         </div>
