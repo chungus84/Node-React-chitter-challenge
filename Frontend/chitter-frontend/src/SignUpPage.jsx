@@ -17,14 +17,14 @@ const SignUpPage = ({ addUserFunc }) => {
 
 
     const handleChange = ({ name, value }) => {
-        console.log(user);
+        // console.log(user);
         setUser({ ...user, [name]: value })
     }
 
     const handleSubmit = e => {
         e.preventDefault()
         const newUser = { ...user };
-        console.dir(newUser);
+        // console.dir(newUser);
         try {
             addUserFunc(newUser);
             navigate('/');

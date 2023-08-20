@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const NewPeepForm = ({ addPeep }) => {
+const NewPeepForm = ({ addPeep, user }) => {
 
 
+
+    const { userName } = user
+
+    console.log(userName);
 
     const [peepMessage, setPeepMessage] = useState({
         message: ``
@@ -20,6 +24,7 @@ const NewPeepForm = ({ addPeep }) => {
     const handleChange = ({ name, value }) => {
         // console.log(req.body);
         console.log(peepMessage);
+        // console.log(user);
 
         setPeepMessage({ ...peepMessage, [name]: value })
 
@@ -29,8 +34,8 @@ const NewPeepForm = ({ addPeep }) => {
     const handleSubmit = e => {
         e.preventDefault();
         const newPeep = { ...peepMessage };
-        console.dir(newPeep)
-        addPeep(newPeep);
+
+        addPeep(newPeep, userName);
     }
 
     return (

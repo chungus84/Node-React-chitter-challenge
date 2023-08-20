@@ -13,14 +13,16 @@ export const getPeepsService = async () => {
     }
 }
 
-export const newPeepService = async newPeep => {
+export const newPeepService = async (newPeep) => {
 
     try {
-        // Connect to the database collection and save the new documen
-        // console.log(newPeep);
-        const peepToAdd = new Peep(newPeep);
-        // saving the document
-        return await peepToAdd.save();
+
+        const peepToAdd = new Peep({ message: newPeep.peep });
+        const savedPeep = await peepToAdd.save();
+        const userPeep = await User.findOne({ userName: newPeep.user })
+        userPeep.peeps.push(savedPeep._id)
+        return await userPeep.save()
+
 
     } catch (error) {
         throw error;

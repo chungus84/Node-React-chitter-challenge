@@ -14,13 +14,17 @@ import SignUpPage from './SignUpPage';
 import PeepPage from './PeepPage';
 import LoginPage from './LoginPage';
 
+
+
 function App() {
+
+    let userArray = [];
 
     const [peeps, setPeeps] = useState([]);
     const [error, setError] = useState({ type: ``, message: `` });
     const [loggedIn, setLoggedIn] = useState(false)
     const [user, setUser] = useState({
-        userId: ``,
+
         userName: ``,
 
     })
@@ -38,9 +42,9 @@ function App() {
         // console.log(peeps);
         setPeeps(peeps)
     }
-    const addPeepData = async newPeep => {
+    const addPeepData = async (newPeep, user) => {
         console.log(`Adding a new peeps`);
-        const data = await addPeep(newPeep);
+        const data = await addPeep(newPeep, user);
         if (data instanceof Error) {
             console.error(data.message);
         } else {
@@ -61,12 +65,23 @@ function App() {
     }
 
     const handleLogin = async ({ email, password }) => {
-        setLoggedIn(await checkLogin({ email, password }))
+        const response = await checkLogin({ email, password })
+
+        setLoggedIn(response.status);
+        const { userName } = response.user
+        setUser({ ...user, userName })
+
+        userArray.push(response.user)
+
+
+
     }
 
     useEffect(() => {
+        console.log("This is loggedIn " + loggedIn);
+        console.log(`User is this: ${user.userName}`);
         getPeepsHandler()
-    }, [])
+    }, [loggedIn, user])
 
 
 
@@ -91,11 +106,12 @@ function App() {
         <>
             <div className='container'>
                 <Header />
+                <h3> WHi There {user.userName}</h3>
 
                 <Routes>
-                    <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} />} />
+                    <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} user={user} />} />
                     <Route path="/sign-up" element={<SignUpPage addUserFunc={addUserHandler} />} />
-                    <Route path='/login' element={<LoginPage handleLogin={handleLogin} />} />
+                    <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
 
                 </Routes>
 

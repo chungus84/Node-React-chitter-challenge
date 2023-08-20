@@ -18,7 +18,8 @@ app.use(cors());
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', peepsRouter);
-app.use(`/sign-up`, userRouter);
+app.use(`/`, userRouter);
+// app.use(`/login`, userRouter);
 // app.use('/', newPeep);
 
 // console.log(HOST);
