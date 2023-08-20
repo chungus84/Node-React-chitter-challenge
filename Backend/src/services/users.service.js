@@ -3,12 +3,19 @@ import User from "../models/user.model.js";
 export const addUserService = async newUser => {
     // console.log(newUser);
     try {
-        const userToAdd = new User(newUser);
-        return await userToAdd.save()
+        const emailCheck = await User.findOne({ email: newUser.email })
+        const userNameCheck = await User.findOne({ userName: newUser.userName })
+
+        if (emailCheck === null && userNameCheck === null) {
+            const userToAdd = new User(newUser);
+
+            return await userToAdd.save()
+        }
+        throw new Error()
 
 
     } catch (error) {
-        throw error;
+        return { error: 'Credentials are already in the system' }
     }
 }
 
