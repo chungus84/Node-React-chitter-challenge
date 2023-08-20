@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Peep from "../src/models/peep.model.js";
-import User from "../src/models/user.model.js";
+import Peep from "../models/peep.model.js";
+import User from "../models/user.model.js";
 
 
 export const getPeepsService = async () => {

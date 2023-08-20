@@ -3,11 +3,12 @@ import Header from "./Components/Header"
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-const SignUpPage = ({ addUserFunc }) => {
+const SignUpPage = ({ addUserFunc, loginFunc, setUserFunc }) => {
 
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({
+
+    const [userCred, setUserCred] = useState({
         fName: ``,
         lName: ``,
         email: ``,
@@ -17,16 +18,19 @@ const SignUpPage = ({ addUserFunc }) => {
 
 
     const handleChange = ({ name, value }) => {
-        // console.log(user);
-        setUser({ ...user, [name]: value })
+        // console.log(userCred);
+        setUserCred({ ...userCred, [name]: value })
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        const newUser = { ...user };
-        // console.dir(newUser);
+        const newUser = { ...userCred };
+
         try {
+
             addUserFunc(newUser);
+            loginFunc({ email: newUser.email, password: newUser.password });
+            setUserFunc({ userName: newUser.userName });
             navigate('/');
         } catch (error) {
             navigate('/sign-up')
@@ -42,27 +46,27 @@ const SignUpPage = ({ addUserFunc }) => {
                     <div className="row justify-content-center text-start my-3">
                         <div className="form-group col-md-5">
                             <label htmlFor="fNameText"> First Name:</label>
-                            <input type="text" name="fName" id="fNameText" value={user.fName} onChange={e => handleChange(e.target)} className="form-control" placeholder="First Name" required />
+                            <input type="text" name="fName" id="fNameText" value={userCred.fName} onChange={e => handleChange(e.target)} className="form-control" placeholder="First Name" required />
                         </div>
                         <div className="form-group col-md-5">
                             <label htmlFor="lNameText"> Surname:</label>
-                            <input type="text" name="lName" id="lNameText" value={user.lName} onChange={e => handleChange(e.target)} className="form-control" placeholder="Surname" required />
+                            <input type="text" name="lName" id="lNameText" value={userCred.lName} onChange={e => handleChange(e.target)} className="form-control" placeholder="Surname" required />
                         </div>
                     </div>
                     <div className="row justify-content-center text-start my-3">
                         <div className="form-group col-md-5">
                             <label htmlFor="emailText">Email:</label>
-                            <input type="email" name="email" id="emailText" value={user.email} onChange={e => handleChange(e.target)} className="form-control" placeholder="Email" required />
+                            <input type="email" name="email" id="emailText" value={userCred.email} onChange={e => handleChange(e.target)} className="form-control" placeholder="Email" required />
                         </div>
                         <div className="form-group col-md-5">
                             <label htmlFor="userNameText">UserName: </label>
-                            <input type="text" name="userName" id="userNameText" value={user.userName} onChange={e => handleChange(e.target)} className="form-control" placeholder="UserName" required />
+                            <input type="text" name="userName" id="userNameText" value={userCred.userName} onChange={e => handleChange(e.target)} className="form-control" placeholder="UserName" required />
                         </div>
                     </div>
                     <div className="row justify-content-center text-start my-3">
                         <div className="form-group col-md-5">
                             <label htmlFor="passwordText">Password:</label>
-                            <input type="password" name="password" id="passwordText" value={user.password} onChange={e => handleChange(e.target)} className="form-control" placeholder="Password" required />
+                            <input type="password" name="password" id="passwordText" value={userCred.password} onChange={e => handleChange(e.target)} className="form-control" placeholder="Password" required />
                         </div>
                         <div className="form-group col-md-5">
                             <label htmlFor="confirmPasswordText">Confirm Password:</label>
@@ -87,7 +91,9 @@ const SignUpPage = ({ addUserFunc }) => {
 }
 
 SignUpPage.propTypes = {
-    addUserFunc: PropTypes.func.isRequired
+    addUserFunc: PropTypes.func.isRequired,
+    loginFunc: PropTypes.func.isRequired,
+    setUserFunc: PropTypes.func.isRequired
 }
 
 

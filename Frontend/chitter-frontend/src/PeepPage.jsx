@@ -34,7 +34,9 @@ const PeepPage = ({ peepFunc, data, user, login, logoutFunc }) => {
 PeepPage.propTypes = {
     peepFunc: PropTypes.func,
     data: PropTypes.object,
-    user: PropTypes.object
+    user: PropTypes.object,
+    login: PropTypes.bool,
+    logoutFunc: PropTypes.func
 }
 
 export default PeepPage

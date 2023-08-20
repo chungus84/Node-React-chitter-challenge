@@ -59,7 +59,7 @@ function App() {
     const addUserHandler = async user => {
         console.log(`Adding new User`);
         const apiCallResult = await addUser(user);
-        if (user instanceof Error) {
+        if (apiCallResult instanceof Error) {
             console.log(data.message);
         } else {
             console.log(`New User Added`);
@@ -67,13 +67,16 @@ function App() {
     }
 
     const handleLogin = async ({ email, password }) => {
+        console.log(`handle login email: ${email}`);
+        console.log(`handle login password: ${password}`);
         const response = await checkLogin({ email, password })
+        // console.log(response);
 
         setLoggedIn(response.status);
         const { userName } = response.user
         setUser({ ...user, userName })
 
-        userArray.push(response.user)
+        // userArray.push(response.user)
 
     }
 
@@ -99,7 +102,7 @@ function App() {
                 <h3> {loggedIn ? `Hi There ${user.userName}` : `Welcome to Chitter`}</h3>
                 <Routes>
                     <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} user={user} login={loggedIn} logoutFunc={handleLogout} />} />
-                    <Route path="/sign-up" element={<SignUpPage addUserFunc={addUserHandler} />} />
+                    <Route path="/sign-up" element={<SignUpPage addUserFunc={addUserHandler} loginFunc={handleLogin} setUserFunc={setUser} />} />
                     <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
                 </Routes>
             </div>

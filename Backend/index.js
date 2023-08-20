@@ -4,8 +4,8 @@ import main from './src/db/main.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { router as userRouter } from './routes/users.js';
-import { router as peepsRouter } from './routes/peeps.js';
+import { router as userRouter } from './src/routes/users.js';
+import { router as peepsRouter } from './src/routes/peeps.js';
 
 
 const app = express();
