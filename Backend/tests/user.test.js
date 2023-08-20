@@ -70,8 +70,28 @@ describe('User Tests', () => {
 
         const res = await testServer.post('/login').send(testEmail, testPassword)
 
-        console.log(res.status);
+        expect(res.body.user?.error !== undefined).true;
+        expect(res.body.user).to.have.property('error')
 
+    });
+    it('should allow user to login', async () => {
+        let user = {
+            fName: "Joe",
+            lName: "Blogs",
+            email: "test@test.com",
+            userName: "jblog88",
+            password: "password",
+        }
+        await testServer.post('/sign-up').send(user)
+
+        const testEmail = "test@test.com"
+        const testPassword = "password"
+
+        const res = await testServer.post('/login').send(testEmail, testPassword)
+
+        expect(res).to.have.status(200);
+        expect(res.body.user?.error === undefined).false;
     })
+
 
 })
