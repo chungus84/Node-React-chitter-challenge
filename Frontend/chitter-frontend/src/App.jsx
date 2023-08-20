@@ -90,48 +90,19 @@ function App() {
 
 
 
-
-
-
-
-    // const submitPeepHandler = async peep => {
-    //     const externalDataCallResult = await submitPeep(peep);
-    //     console.log(externalDataCallResult);
-    //     if (externalDataCallResult?.error) {
-    //         const errorObject = { ...externalDataCallResult.error }
-    //         errorObject.message = `There was a problem in submitting your peep: ${externalDataCallResult.error.message}`;
-    //         return setError(errorObject);
-    //     }
-    //     setCreateUpdateStatus(`Peep Submitted`);
-    //     getPeepsHandler();
-
-    // }
-
     return (
         <>
             <div className='container'>
                 <Header login={loggedIn} user={user} />
                 <div className="d-flex flex-row justify-content-center">
-
-
                 </div>
-                <h3> Hi There {user.userName}</h3>
-
-
+                <h3> {loggedIn ? `Hi There ${user.userName}` : `Welcome to Chitter`}</h3>
                 <Routes>
                     <Route path="/" element={<PeepPage peepFunc={addPeepData} data={{ peeps, error: error.message }} user={user} login={loggedIn} logoutFunc={handleLogout} />} />
                     <Route path="/sign-up" element={<SignUpPage addUserFunc={addUserHandler} />} />
                     <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
-
                 </Routes>
-
-                {/* <PeepFeed peeps={testPeeps} /> */}
-
-
             </div>
-
-
-
         </>
     )
 }

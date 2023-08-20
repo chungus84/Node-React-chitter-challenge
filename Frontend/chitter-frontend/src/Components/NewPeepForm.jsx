@@ -4,8 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const NewPeepForm = ({ addPeep, user, login }) => {
 
-
-
     const { userName } = user
 
     console.log(userName);
@@ -16,27 +14,14 @@ const NewPeepForm = ({ addPeep, user, login }) => {
 
     const [disabled, setDisabled] = useState(false)
 
-    // useEffect(() => {
-
-    //     if (peep?.length > 0) {
-    //         setPeepMessage(peep.message)
-    //     }
-    // })
 
     const handleChange = ({ name, value }) => {
-        // console.log(req.body);
-        console.log(peepMessage);
-        // console.log(user);
-
         setPeepMessage({ ...peepMessage, [name]: value })
-
-        // submitAction(peepMessage);
     }
 
     const handleSubmit = e => {
         e.preventDefault();
         const newPeep = { ...peepMessage };
-
         addPeep(newPeep, userName);
     }
 
@@ -64,6 +49,8 @@ const NewPeepForm = ({ addPeep, user, login }) => {
 
 NewPeepForm.propTypes = {
     addPeep: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    login: PropTypes.bool.isRequired
 }
 
 export default NewPeepForm

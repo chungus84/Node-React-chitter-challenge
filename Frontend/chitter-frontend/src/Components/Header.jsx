@@ -2,17 +2,11 @@ import LoginButton from "./LoginButton";
 import SignUpButton from "./SignUpButton";
 
 const Header = ({ login, user }) => {
-    console.log(login);
-    console.log(user);
+    // console.log(login);
+    // console.log(user);
     return (
-        <>
-            <h1>Hello Peepers</h1>
 
-
-
-        </>
-
-
+        <h1>Hello Peepers</h1>
 
     )
 }
