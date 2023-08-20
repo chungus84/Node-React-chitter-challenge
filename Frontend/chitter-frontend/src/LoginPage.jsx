@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const LoginPage = ({ handleLogin }) => {
+const LoginPage = ({ handleLogin, loggedIn }) => {
+
+    const loggedInStatus = loggedIn
 
     const [login, setLogin] = useState({
         email: {
@@ -25,6 +27,8 @@ const LoginPage = ({ handleLogin }) => {
         e.preventDefault();
         handleLogin({ email: login.email.value, password: login.password.value })
         navigate('/');
+
+
     }
 
     return (

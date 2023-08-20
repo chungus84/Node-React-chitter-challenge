@@ -3,6 +3,7 @@ import { allUsers } from '../controllers/allUsers.controller.js';
 import { newUser } from '../controllers/addUser.controller.js';
 import { loginUser } from '../controllers/loginUser.controller.js';
 
+
 export const router = express.Router();
 
 router.route('/')

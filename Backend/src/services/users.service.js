@@ -24,15 +24,24 @@ export const addUserService = async newUser => {
 export const loginUserService = async (email, password) => {
 
     try {
-
-        const user = await User.findOne({ email });
-        // console.log(user.password);
-        if (user && (user.password === password)) {
+        const user = await User.findOne({ email })
+        // console.log(user);
+        if (user && (password === user.password)) {
 
             return user
         }
+        const loginError = new Error('User not found')
+        throw loginError
+
+
     } catch (error) {
-        throw error;
+        return { error: `These credentials do not match` }
     }
+
+
+
+    // console.log(user.password);
+
+
 
 }
