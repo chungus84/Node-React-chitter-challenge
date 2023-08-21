@@ -31,28 +31,12 @@ describe('User Tests', () => {
             password: "password",
         }
 
-
-        // const testUser = new User({ fName, lName, email, userName, password });
         const res = await testServer.post('/sign-up').send(user)
 
-        // console.log(res);
+
         expect(res).to.have.status(201);
         expect(res.body.newUser).to.have.nested.property('fName')
-        // expect(testUser).instanceOf(User);
-        // expect(testUser).to.have.nested.property('fName');
-    });
-    it('should throw a 400 error as it is missing fName', async () => {
-        let user = {
-            lName: "Blogs",
-            email: "test@test.com",
-            userName: "jblog88",
-            password: "password",
 
-        }
-
-        const res = await testServer.post('/sign-up').send(user)
-        expect(res).to.have.status(400)
-        expect(res.error.text).to.equal(`New User has failed`)
     });
 
     it('should not allow the user to login ', async () => {

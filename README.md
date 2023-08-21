@@ -14,8 +14,10 @@ clone the repo
 Backend Instructions
 - cd Backend
 - npm i to install packages
+- run npm run seedDb (should only need to run once) to seed Database
 - npm test to run backend tests and (c8) coverage
 - npm start to run dev environment
+** Have not got this running on Atlus just yet so npm run build won't do much
 
 
 Frontend Instructions
@@ -51,6 +53,17 @@ Backend
 - Axios
 - BodyParser
 
+```
+
+### Features NOT YET IMPLEMENTED
+```
+- More Testing, Backend is at 93% Lines tested but Frontend needs more testing
+- Express Validator for user inputs
+- MongoDB Atlus connection
+- JWT Auth (currently using simple authentication)
+- Further Page Styling
+- Send a user an email if they get tagged in a post
+- Allow people to comment on post
 ```
 
 
