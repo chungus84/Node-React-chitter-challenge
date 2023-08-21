@@ -27,8 +27,6 @@ const LoginPage = ({ handleLogin, loggedIn }) => {
         e.preventDefault();
         handleLogin({ email: login.email.value, password: login.password.value })
         navigate('/');
-
-
     }
 
     return (

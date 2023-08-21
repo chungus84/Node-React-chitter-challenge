@@ -7,7 +7,6 @@ export const getPeepsService = async () => {
     try {
         return await User.find({}, { userName: 1, peeps: 1 }).populate('peeps')
 
-
     } catch (error) {
         throw error;
     }
@@ -22,7 +21,6 @@ export const newPeepService = async (newPeep) => {
         const userPeep = await User.findOne({ userName: newPeep.user })
         userPeep.peeps.push(savedPeep._id)
         return await userPeep.save()
-
 
     } catch (error) {
         throw error;

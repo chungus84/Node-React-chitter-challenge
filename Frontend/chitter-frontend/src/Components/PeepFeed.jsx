@@ -8,15 +8,6 @@ const PeepFeed = ({ peeps }) => {
 
     const peepData = peeps.peeps
 
-    // console.log(peeps.peeps);
-
-    // for (const user of peepData) {
-    //     user.peeps.forEach(peep => console.log(peep.message));
-    // }
-    // console.log(peepData);
-
-    // peepData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-
     const [dataStatus, setDataStatus] = useState({ name: `loading`, message: `Peeps are loading...` });
 
     useEffect(() => {

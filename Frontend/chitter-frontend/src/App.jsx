@@ -67,20 +67,12 @@ function App() {
     }
 
     const handleLogin = async ({ email, password }) => {
-        // console.log(`handle login email: ${email}`);
-        // console.log(`handle login password: ${password}`);
+
         const response = await checkLogin({ email, password })
         console.log(`response in handleLogin ${response}`);
-
         setLoggedIn(response.status);
-
         const { userName } = response.user
-
         setUser({ ...user, userName })
-
-
-
-        // userArray.push(response.user)
 
     }
 

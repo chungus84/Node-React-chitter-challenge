@@ -18,7 +18,6 @@ const SignUpPage = ({ addUserFunc, loginFunc, setUserFunc }) => {
 
 
     const handleChange = ({ name, value }) => {
-        // console.log(userCred);
         setUserCred({ ...userCred, [name]: value })
     }
 

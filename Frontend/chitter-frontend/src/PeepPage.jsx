@@ -8,14 +8,9 @@ import LogoutButton from './Components/LogoutButton.jsx';
 
 const PeepPage = ({ peepFunc, data, user, login, logoutFunc }) => {
 
-
-    // console.log(loginFunc);
     const { peeps, error } = data
 
     const { userName } = user
-
-    // console.log(user);
-
 
     return (
         <div className="container-fluid d-flex flex-column justify-content-center">

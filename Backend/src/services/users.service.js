@@ -5,13 +5,16 @@ export const addUserService = async newUser => {
     try {
         const emailCheck = await User.findOne({ email: newUser.email })
         const userNameCheck = await User.findOne({ userName: newUser.userName })
+        console.log(emailCheck);
+        console.log(userNameCheck);
 
-        if (emailCheck === null && userNameCheck === null) {
-            const userToAdd = new User(newUser);
+        if (emailCheck !== null) { throw new Error() }
+        if (userNameCheck !== null) { throw new Error() }
+        const userToAdd = new User(newUser);
 
-            return await userToAdd.save()
-        }
-        throw new Error()
+        return await userToAdd.save()
+        // await loginUserService(userToAdd.email, userToAdd.password)
+        // return savedUser;
 
 
     } catch (error) {
